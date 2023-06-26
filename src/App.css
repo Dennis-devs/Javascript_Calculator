@@ -1,0 +1,98 @@
+#root {
+  max-width: 576px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#display{
+  position: relative;
+  align-self: center;
+  margin-top: 10px;
+  width: calc(100% - 1em);
+  height: 80px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+}
+.screen{
+  position: absolute;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  background-color:lightgoldenrodyellow;
+  border: 1px solid black;
+  border-radius: 5px;
+  font-size: x-large;
+  font-weight: 300;
+  font-family: myFirstFont;
+}
+div .screenB{
+  position: absolute;
+  width: max-content;
+  height: max-content;
+  top: 30%;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  font-size: xx-large;
+  font-weight: 300;
+  font-family: myFirstFont;
+}
+
+.buttons{
+    width: 100%;
+    height: 100%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+}
+
+.buttonsA{
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: flex-start;
+  background-color:burlywood;
+}
+.buttonsA > button{
+  margin: 3px;
+  padding-left: 1em;
+  padding-right: 1em;
+}
+.buttonsA .spans {
+    font-size: x-large;
+    font-weight: 300;
+}
+.buttonsA button{
+  transition: ease-in
+}
+.buttonsA .spans:hover{
+  background-color: lavender;
+  color: black;
+  transform: scale(0.9);
+}
+.buttonsA .rub:hover{
+  transform: scale(0.9)
+}
+
+.buttonsB {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  height: 100%;
+  margin: 10px;
+}
+.buttonsB .num{
+  background-color: rgb(123, 123, 137);
+  color: black;
+}
+.buttonsB .num:hover{
+  color: white;
+}
+
