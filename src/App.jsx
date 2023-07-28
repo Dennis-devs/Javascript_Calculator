@@ -32,6 +32,9 @@ function reducer(state, {type, payload}){
             if(payload.digit==='.' && state.currentOps.includes('.')){
               return state
             }
+            if(payload.digit==0 && state.currentOps==0){
+              return state
+            }
             return {
               ...state, 
               currentOps: `${state.currentOps || ""}${payload.digit}`
@@ -41,12 +44,18 @@ function reducer(state, {type, payload}){
             if(state.currentOps == null && state.previousOps == null){
             return state
             }
-            if(state.previousOps!=0 && state.currentOps!=0){
+            if(state.previousOps == null){
               return{
                 ...state,
               previousOps: state.currentOps,
               ops: payload.ops,
               currentOps: null,
+              }
+            }
+            if(state.currentOps==null){
+              return {
+                ...state,
+                ops: payload.ops,   
               }
             }
             if(state.currentOps==0){
@@ -55,14 +64,15 @@ function reducer(state, {type, payload}){
                 ops: payload.ops, 
               }
             }
-            if(state.previousOps==null){ 
-              return {
-                ...state, 
-                previousOps: state.currentOps, 
-                ops: payload.ops, 
-                currentOps: 0,   
-              }
-            }           
+            
+            // if(state.previousOps==null){ 
+            //   return {
+            //     ...state, 
+            //     previousOps: state.currentOps, 
+            //     ops: payload.ops, 
+            //     currentOps: 0,   
+            //   }
+            // }           
             return{
               ...state,
               previousOps: evaluate(state), 
@@ -83,7 +93,7 @@ function reducer(state, {type, payload}){
               overwrite: true, 
               previousOps: evaluate(state),
               ops: null, 
-              currentOps: 0, 
+              currentOps: null, 
               
             }
           case Actions.Delete_Input:
@@ -122,7 +132,7 @@ function reducer(state, {type, payload}){
               }  
           
           case Actions.Clear_Screen:
-            return {}; 
+            return {currentOps: 0}; 
   }
 }
 function evaluate({currentOps, previousOps, ops}){
@@ -159,7 +169,7 @@ function App() {
       <div className='calcbody container'>
         <div id="display" className='border'>
         <div className="screen">{root}{currentOps}</div>
-          <div className="screenB border">{previousOps}{ops}</div>
+          <div id="display2" className="screenB border">{previousOps}{ops}</div>
         </div> 
   
         <div className="buttons">
